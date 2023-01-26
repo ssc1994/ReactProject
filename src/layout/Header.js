@@ -1,5 +1,5 @@
 import { Fragment } from "react"
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const Header = () => {
     return(
@@ -11,6 +11,7 @@ const Header = () => {
                 <li><Link to ="/login">로그인</Link></li>
                 <li><Link to ="/join">회원가입</Link></li>
             </ul>
+            <Outlet/>
         </header>
     )
 }
