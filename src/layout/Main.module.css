@@ -1,0 +1,158 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.container .firstimgBox .img1 {
+    object-fit: cover;
+    width: 100%;
+    /* height: 1100px; */
+
+}
+
+.container .inner {
+    /* border: 5px solid black; */
+    height: 2000px;
+    /* display: inline; */
+    position: relative;
+}
+
+.container .inner .innerImgBox1 {
+    /* object-fit: contain; */
+    /* width: 100%;
+    height: 100%; */
+    display: inline-block;
+    height: 500px;
+    position: absolute;
+    top: 200px;
+    left: 400px;
+}
+
+.innerImgBox1 .text1 {
+    background-color: rgb(211, 255, 89);
+    width: 600px;
+    height: 550px;
+    position: absolute;
+    top: 180px;
+    left: 430px;
+    /* text-align: center; */
+    line-height: 25px;
+    padding-left: 50px;
+    padding-right: 50px;
+    /* padding-top: 200px; */
+}
+
+.innerImgBox1 .text1 .text1Span1 {
+    display: block;
+    text-align: center;
+    font-size: 40px;
+    position: absolute;
+    top: 70px;
+    left: 250px;
+}
+
+.innerImgBox1 .text1 .text1Span2 {
+    vertical-align: bottom;
+    position: absolute;
+    top: 200px;
+    padding-right: 35px;
+    line-height: 30px;
+}
+
+
+.container .inner .innerImgBox1 .img2 {
+    width: 100%;
+    display: inline-block;
+    /* padding-top: 200px; */
+    /* margin-left: 300px; */
+    height: 100%;
+}
+
+.container .inner .innerImgBox2 {
+    position: absolute;
+    height: 700px;
+    top: 1050px;
+    left: 600px;
+    display: inline-block;
+
+}
+
+.img3 {
+    background-image: url('https://images.unsplash.com/photo-1596357395217-80de13130e92');
+    background-size: contain;
+    height: 500px;
+    width: 1300px;
+    background-attachment: fixed;
+    background-position: right bottom;
+}
+
+.innerImgBox2 .text2 {
+    background-color: rgb(174, 223, 215);
+    width: 650px;
+    height: 500px;
+    position: absolute;
+    top: 230px;
+    left: -350px;
+    text-align: center;
+    /* line-height: 550px; */
+}
+
+.innerImgBox2 .text2 .text2Span1{
+    position: absolute;
+    top: 200px;
+    left: 200px;
+    font-size: 30px;
+}
+
+.innerImgBox2 .text2 .text2Span2 {
+    position: absolute;
+    top: 250px;
+    left: 130px;
+    font-size: 30px;
+
+}
+
+
+.innerImgBox2 .text2 .findButton {
+    position: absolute;
+    height: 80px;
+    width: 200px;
+    top: 420px;
+    left: 450px;
+    background-color: #4CAF50;
+    color: black;
+    border: none;
+    transition-duration: 0.4s;
+    font-size: 25px;
+}
+
+.innerImgBox2 .text2 .findButton:hover {
+    background-color:  rgb(211, 255, 89);
+    color: black;
+}
+
+.footerBox {}
+
+.footerBox .footerMiniBox1 {
+    background-color: rgb(174, 223, 215);
+    color: grey;
+    height: 80px;
+    text-align: center;
+
+    overflow: hidden;
+
+}
+
+.footerBox .footerMiniBox1 img {
+    float: right;
+    margin-left: 50px;
+}
+
+.footerBox .footerMiniBox2 {
+    background-color: rgb(211, 255, 89);
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
