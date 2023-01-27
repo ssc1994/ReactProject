@@ -1,5 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+import { Pagination} from 'swiper';
+import {Navigation, EffectFade, Autoplay } from "swiper"
+import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from './Main.module.css';
+import "swiper/css"
+import "swiper/css/effect-fade"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
 
 
 const Main = () => {
@@ -10,11 +17,42 @@ const Main = () => {
         navigator('/map');
     }
 
+    const items = [
+        { src: "/img/3.png" },
+        { src: "/img/2.png" },
+        { src: "/img/6.png" }
+    ];
+
+
+
     return (
         <div className={styled.container}>
-            <div className={styled.firstimgBox}>
+
+            <Swiper
+                effect={"coverflow"}
+                autoplay={{
+                    delay: 2000,
+                    disableOnInteraction: false,
+                  }}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  modules={[Navigation, EffectFade,Autoplay]}
+                  className="mySwiper"
+                  loop={true}
+                >
+
+                {items.map((item, idx) => {
+                    return (
+                        <SwiperSlide key={idx}>
+                            <img src={item.src} style={{objectFit: "cover", width: "100%", height: "1050px"}}/>
+                        </SwiperSlide>
+                    );
+                })}
+                {/* <div className={styled.firstimgBox}>
                 <img src="/img/3.png" className={styled.img1} />
-            </div>
+            </div> */}
+            </Swiper>
             <div className={styled.inner}>
                 <div className={styled.innerImgBox1}>
                     <img src='/img/4.png' className={styled.img2} />
@@ -27,7 +65,7 @@ const Main = () => {
                     <div className={styled.img3}></div>
                     {/* <img src='/img/gym.png' className={styled.img3} /> */}
                     <div className={styled.text2}>
-                        <span className={styled.text2Span1}>운동은 오늘부터!</span><br/>
+                        <span className={styled.text2Span1}>운동은 오늘부터!</span><br />
                         <span className={styled.text2Span2}>주변의 체육시설을 찾아보세요!</span>
                         <button className={styled.findButton} onClick={buttonClick}>주변 시설찾기</button>
                     </div>

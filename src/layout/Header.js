@@ -20,11 +20,11 @@ const Header = () => {
                 <div className={styled.whiteHeader}>
                     <img src="/img/sincl.png" className={styled.sincl} onClick={sinclClick}/>
                     <ul className={styled.headerBox}>
-                        <li><Link to="/map" className={styled.map}>시설찾기</Link></li>
-                        <li><Link to="/record" className={styled.record}>운동기록</Link></li>
-                        <li><Link to="/mypage" className={styled.mypage}>마이페이지</Link></li>
-                        <li><Link to="/login" className={styled.login}>로그인</Link></li>
-                        <li><Link to="/join" className={styled.join}>회원가입</Link></li>
+                        <li><Link to="/map" className={styled.map}>MAP</Link></li>
+                        <li><Link to="/record" className={styled.record}>RECORD</Link></li>
+                        <li><Link to="/mypage" className={styled.mypage}>MYPAGE</Link></li>
+                        <li><Link to="/login" className={styled.login}>LOGIN</Link></li>
+                        <li><Link to="/join" className={styled.join}>JOIN</Link></li>
                     </ul>
                 </div>
             </nav>
