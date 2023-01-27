@@ -1,23 +1,26 @@
 import { useEffect, useState } from 'react';
 
+
+import styled from '../layout/MyPage.module.css';
 const currentLogin = JSON.parse(sessionStorage.getItem("login"));
 const email = currentLogin.email;
 const nickname = currentLogin.nickname;
 const password = currentLogin.password;
 
 function Article(props) {
-    return <article>
+    return <article className={styled.my_wrap}>
         {props.email == currentLogin.email ? <div>
             <h2>email : {props.email}</h2>
             <p>Nickname : {props.nickname}</p>
             <p>Password : {props.password}</p>
         </div>
             : <h3>{props.nickname}</h3>}
+
     </article>
 }
 function Header(props) {
-    return <header>
-        <h1><a href="/" onClick={(event) => {
+    return <header className={styled.my_wrap2}>
+        <h1><a href="/"  onClick={(event) => {
             event.preventDefault();
             props.onChangeMode();
         }}>{props.nickname}</a></h1>
@@ -28,7 +31,7 @@ function Nav(props) {
     for (let i = 0; i < props.topics.length; i++) {
         let t = props.topics[i];
         lis.push(<li key={t.id}>
-            <a id={t.id} href={'/read/' + t.id} onClick={event => {
+            <a id={t.id} href={'/read/' + t.id} className={styled.my_wrap3} onClick={event => {
                 event.preventDefault();
                 props.onChangeMode(Number(event.target.id));
             }}>{t.nickname}님 ({t.email}) 정보 수정</a>
@@ -45,21 +48,27 @@ function Update(props) {
 
     const [nickname, setTitle] = useState(props.nickname);
     const [password, setBody] = useState(props.password);
-    return <article>
+    return <article className={styled.my_wrap4}>
         <h2>email : {email !=undefined ?  "로그인하세요" : {email} }</h2>
+
         <form onSubmit={event => {
             event.preventDefault();
             const nickname = event.target.nickname.value;
             const password = event.target.password.value;
             props.onUpdate(nickname, password);
         }}>
+
+            <div className={styled.my_wrap6}>
+           
             <p>Nickname : <input type="text" name="nickname" placeholder="nickname" value={nickname} onChange={event => {
                 setTitle(event.target.value);
             }} /></p>
             <p>Password : <input type="text" name="password" placeholder="password" value={password} onChange={event => {
+
                 setBody(event.target.value);
             }}></input></p>
             <p><input type="submit" value="Update"></input></p>
+            </div>
         </form>
     </article>
 }
@@ -85,8 +94,10 @@ function Mypage() {
                 password = topics[i].password;
             }
         }
+
         content = <Article email={email} nickname={nickname} password={password}></Article>
-        contextControl = <li><a href={'/update/' + id} onClick={event => {
+        contextControl = <li className={styled.my_wrap5}><a href={'/update/' + id} onClick={event => {
+
             event.preventDefault();
             setMode('UPDATE');
         }}>Update</a></li>
@@ -130,6 +141,7 @@ function Mypage() {
             <ul>
                 {contextControl}
             </ul>
+            
         </div>
     );
 }
