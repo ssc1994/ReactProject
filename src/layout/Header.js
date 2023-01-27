@@ -48,7 +48,7 @@ const Header = () => {
                     <ul className={styled.headerBox}>
                         <li><Link to="/map" className={styled.map}>MAP</Link></li>
                         <li><Link to="/record" className={styled.record}>RECORD</Link></li>
-                        <li><Link to="/mypage" className={styled.mypage}>MYPAGE</Link></li>
+                        {!visible ? <li><Link to="/mypage" className={styled.mypage}>MYPAGE</Link></li> : null}
                         <li><Link to="/login" className={styled.login} onClick={onClickLogCate}>{loginCate}</Link></li>
                         {visible ? <li><Link to="/join" className={styled.join} >JOIN</Link></li> : null}
                     </ul>
