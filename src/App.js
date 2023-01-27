@@ -10,17 +10,14 @@ import Member from './component/Member';
 const App = ()=> {
   return (
     <Routes>
-      <Route element={<Header/>}>
-        <Route path="/" element={<Main/>} />
-        <Route path="/map" element={<Map/>} />
-        <Route path="/record" element={<Record/>} />
-        <Route path="/mypage" element={<Mypage/>} />
-        <Route path="/login" element={<Member/>} />
-        <Route path="/join" element={<Member/>} />
-
-      </Route>
-
-
+        <Route element={<Header/>}>
+          <Route path="/" element={<Main/>} />
+          <Route path="/map" element={<Map/>} />
+          <Route path="/record" element={<Record/>} />
+          <Route path="/mypage" element={<Mypage/>} />
+          <Route path="/login" element={<Member/>} />
+          <Route path="/join" element={<Member/>} />
+        </Route>
     </Routes>
   );
 }

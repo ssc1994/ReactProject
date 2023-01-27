@@ -1,5 +1,6 @@
+import axios from "axios";
 import { Fragment, useCallback, useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import './../layout/Member.css'
 
 const Join = () => {
@@ -91,6 +92,15 @@ const Join = () => {
 
     const navigator = useNavigate();
     const onSubmit = () => {
+        // 회원가입시 받은 정보를 localstorage에 저장한다.
+        const currMemberInfo = JSON.parse(localStorage.getItem('join'));
+        const memberInfo = {email : email, password : password, nickname : nickname};
+        if(currMemberInfo === null){
+            localStorage.setItem('join', JSON.stringify([memberInfo]));
+        }else{
+            currMemberInfo.push(memberInfo);
+            localStorage.setItem('join', JSON.stringify(currMemberInfo));
+        }
         alert('가입되었습니다');
         navigator("/login");
     }
@@ -99,7 +109,7 @@ const Join = () => {
         <Fragment>
             <form action="#" calssName="join">
                 <h1>Sign Up</h1>
-                <span>use your email for registration</span>
+                <p>use your email for registration</p>
 
                 <input type="text" onChange={onChangeEmail} placeholder="Email"></input>
                 <span className={isEmailValid ? 'success' : 'error'}>{emailMsg}</span>
@@ -113,7 +123,7 @@ const Join = () => {
                 <input type="text" onChange={onChangeNickname} placeholder="NickName"></input>
                 <span className={isNicknameValid ? 'success' : 'error'}>{nicknameMsg}</span>
 
-                <button onClick={onSubmit} type="submit" disabled={!isAllValid} style={{marginTop :"10px"}}>Sign Up</button>
+                <button onClick={onSubmit} type="submit" disabled={!isAllValid} style={{ marginTop: "10px" }}>Sign Up</button>
             </form>
         </Fragment>
     )
