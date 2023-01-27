@@ -13,8 +13,6 @@ import TodoList from "./TodoList";
 import '../layout/TodoTemplate.css'
 import styled from '../layout/Record.module.css';
 
-
-
 const Record = () => {
     const [value, onChange] = useState(new Date()); //캘린더
     const [todos, setTodos] = useState([
@@ -25,13 +23,13 @@ const Record = () => {
         // },
         {
             id: 1,
-            text: '2023-01-26 중량 80쳤다',
+            text: '중량 80쳤다',
             checked: true,
 
         },
         {
             id: 2,
-            text: '2023-01-27 야근으로 인한 결석',
+            text: '야근으로 인한 결석',
             checked: false,
         },
     ]);

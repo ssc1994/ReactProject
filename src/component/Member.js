@@ -20,7 +20,6 @@ const Member = () => {
             setActive("container");
         }
     }, [location]);
-    
 
     //아래는 버튼을 눌렀을때 움직이도록..
     const onsignUpButton = () => {
@@ -36,11 +35,9 @@ const Member = () => {
                 <div className="form-container sign-up-container">
                     <Join/>
                 </div>
-
                 <div className="form-container sign-in-container">
                     <Login/>
                 </div>
-
                 <div className="overlay-container">
                     <div className="overlay">
                         <div className="overlay-panel overlay-left">
