@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+
 function Article(props) {
     return <article>
         <h2>{props.title}</h2>
@@ -32,7 +33,11 @@ function Nav(props) {
     </nav>
 }
 
+
+
 function Update(props) {
+
+    
     const [title, setTitle] = useState(props.title);
     const [body, setBody] = useState(props.body);
     return <article>
@@ -115,5 +120,4 @@ function Mypage() {
         </div>
     );
 }
-
 export default Mypage;
