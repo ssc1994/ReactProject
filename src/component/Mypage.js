@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 
 import styled from '../layout/MyPage.module.css';
-const currentLogin = JSON.parse(sessionStorage.getItem("login"));
+const currentLogin = JSON.parse(localStorage.getItem("join"));
 const email = currentLogin.email;
 const nickname = currentLogin.nickname;
 const password = currentLogin.password;
