@@ -1,17 +1,19 @@
 import { Fragment } from "react"
 import KakaoMap from "./KakaoMap"
 import MapList from "./MapList";
+import { ListProvider } from "./../contexts/MapContextAPI.js"
 
 const Map = () => {
+
 
         return (
 
         <Fragment>
             <h3>시설찾기</h3>
-            <div>  {/* 지도에 나타낼 시설목록 */}
+            <ListProvider>  {/* 공공데이터에서 받아온 위도 경도를 넣는 contextAPI */}
                 <MapList/>
                 <KakaoMap/>
-            </div>
+            </ListProvider>
 
         </Fragment>
     )
