@@ -24,7 +24,7 @@ const TodoListItem = ({todo, onRemove, onToggle}) => {
         <div className='TodoListItem'>
             <div className={cn ('checkBox', {checked})} onClick={() => onToggle(id)}>
                 {checked ? <MdCheckBox/> : <MdCheckBoxOutlineBlank />}
-                <div className='text'>`{nowTime} {text}`</div>
+                <div className='text'>{nowTime} {text}</div>
             </div>
             <div className='remove' onClick={() => onRemove(id)}>
                 <MdRemoveCircleOutline/>

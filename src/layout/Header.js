@@ -41,7 +41,7 @@ const Header = () => {
         <header id="header">
             <nav className={styled.nav}>
                 <div className={styled.uniqueColorHeader}>
-                    <h4>운동을 습관화 합시다블라블라</h4>
+                    <h4 className={styled.headerTitle}>TIME TO CHANGE</h4>
                 </div>
                 <div className={styled.whiteHeader}>
                     <img src="/img/sincl.png" className={styled.sincl} onClick={sinclClick}/>

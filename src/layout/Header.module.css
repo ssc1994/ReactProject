@@ -39,6 +39,8 @@
 .headerBox .map, .record, .mypage, .login, .join {
     text-decoration-line: none;
     color: black;
+    font-family: 'establishRoomNo703OTF';
+    font-size: 20px;
 }
 
 .headerBox .map:hover {
@@ -78,5 +80,18 @@
     left: 20px;
     top: 10px;
     object-fit: cover;
+}
+
+@font-face {
+    font-family: 'establishRoomNo703OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRoomNo703OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.headerTitle {
+    font-family: 'establishRoomNo703OTF';
+    font-size: 25px;
+    padding-top: 5px;
 }
 
