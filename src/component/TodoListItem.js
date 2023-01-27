@@ -9,6 +9,13 @@ import '../layout/TodoListItem.css'
 const TodoListItem = ({todo, onRemove, onToggle}) => {
     const {id, text, checked} = todo;
 
+    const todayTime = () => {
+        let now = new Date(); //현재 날짜 및 시간
+        let year = now.getFullYear();
+        let todayMonth = now.getMonth() + 1;
+        let todayDate = now.getDate();
+    }
+
     return (
         <div className='TodoListItem'>
             <div className={cn ('checkBox', {checked})} onClick={() => onToggle(id)}>

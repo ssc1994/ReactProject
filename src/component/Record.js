@@ -41,7 +41,7 @@ const Record = () => {
     //고유값으로 사용될 id
     // ref를 사용하여 변수 담기
     const nextId = useRef(4);
-    const now = new Date(); //해야함
+    
     const onInsert = useCallback(
         text => {
             const todo = {
@@ -99,7 +99,7 @@ const Record = () => {
 
                 {/* todo */}
                 <TodoTemplate>
-                    <TodoInsert onInsert={onInsert} />
+                    <TodoInsert onInsert={onInsert}/>
                     <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
                 </TodoTemplate>
             </div>
