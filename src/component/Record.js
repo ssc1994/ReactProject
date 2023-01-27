@@ -7,14 +7,17 @@ import TodoInsert from "./TodoInsert";
 import TodoList from "./TodoList";
 
 //css파일 경로 링크
-import '../layout/MyPage.module.css'
+
+
+// import '../layout/MyPage.module.css'
 import '../layout/TodoTemplate.css'
+import styled from '../layout/Record.module.css';
 
 
 
 const Record = () => {
     const [value, onChange] = useState(new Date()); //캘린더
-    const [todos, setTodos] = useState ([
+    const [todos, setTodos] = useState([
         // {
         //     id: 1,
         //     text: '리액트 기초',
@@ -24,6 +27,7 @@ const Record = () => {
             id: 1,
             text: '2023-01-26 중량 80쳤다',
             checked: true,
+
         },
         {
             id: 2,
@@ -48,7 +52,7 @@ const Record = () => {
                 id: nextId.current,
                 text,
                 checked: false,
-                
+
             };
             setTodos(todos.concat(todo));
             nextId.current += 1; //nextId 1씩 더하기
@@ -68,42 +72,45 @@ const Record = () => {
         id => {
             setTodos(
                 todos.map(todo =>
-                    todo.id === id ? {...todo, checked: !todo.checked} : todo,
-                    ),
+                    todo.id === id ? { ...todo, checked: !todo.checked } : todo,
+                ),
             );
         },
         [todos],
     );
-    
+
 
 
     return (
 
-        <Fragment>
-            <h3>Exercise Record</h3>
-            <div>
+        
+            <div className={styled.container}>
+                <h3 className={styled.calendarTitle}>Calendar</h3>
                 {/* 달력 */}
-                <Calendar
-                    onChange={onChange}
-                    value={value}
-                    locale="en-EN"
-                    //date와 우리가 작성한 배열인 marks를 비교하며 해당되는 날짜에 highlight를 클래스명으로 주게 된다.
-                    tileClassName={({ date, view }) => {
-                        if (marks.find((x) => x === moment(date).format("DD-MM-YYYY"))) {
-                            return "highlight";
-                        }
-                    }}
-                />
-                
-                <br />
 
-                {/* todo */}
-                <TodoTemplate>
-                    <TodoInsert onInsert={onInsert}/>
-                    <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
-                </TodoTemplate>
+                <div className={styled.calendarBox}>
+                    <Calendar
+                        className={styled.calendar}
+                        onChange={onChange}
+                        value={value}
+                        locale="en-EN"
+                        //date와 우리가 작성한 배열인 marks를 비교하며 해당되는 날짜에 highlight를 클래스명으로 주게 된다.
+                        tileClassName={({ date, view }) => {
+                            if (marks.find((x) => x === moment(date).format("DD-MM-YYYY"))) {
+                                return "highlight";
+                            }
+                        }}
+                    />
+                </div>
+                <div className={styled.todoBox}>
+                    {/* todo */}
+                    <TodoTemplate>
+                        <TodoInsert onInsert={onInsert} />
+                        <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
+                    </TodoTemplate>
+                </div>
+
             </div>
-        </Fragment>
     );
 };
 

@@ -23,7 +23,7 @@ const Login = () => {
                 if(memberInfo[i].password === pw){
                     //로그인 성공시 session생성.
                     const nick = memberInfo[i].nickname;
-                    sessionStorage.setItem(email, JSON.stringify({email: email, password: pw, nickname: nick}));
+                    sessionStorage.setItem('login', JSON.stringify({email: email, password: pw, nickname: nick}));
                     alert(`${nick}님 환영합니다.`);
                     // 이후 마이페이지로 이동?
                     navigator("/");

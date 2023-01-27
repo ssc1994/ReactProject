@@ -21,6 +21,7 @@ const MapList = () => {
             urlquery += "&numOfRows=10";
             urlquery += "&resultType=JSON";
             urlquery += `&faci_addr=${addr}`;
+            
             let resultArr = await axios.get(url + urlquery)
                 .then(res => {
                     setData(res.data.response.body.items.item);
@@ -36,18 +37,6 @@ const MapList = () => {
         setPageNum(pageNum+1);
     }
 
-    const handleHide = (e) => { //수정예정
-        if (e.target.innerHTML === '숨기기') {
-            e.target.nextElementSibling.style.display = 'none';
-            e.target.innerHTML = '보이기'
-            return;
-        }
-        if (e.target.innerHTML === '보이기') {
-            e.target.nextElementSibling.style.display = 'flex';
-            e.target.innerHTML = '숨기기'
-            return;
-        }
-    }
 
 
 
@@ -61,17 +50,6 @@ const MapList = () => {
         <Fragment>
             <h3>시설목록</h3>
             <div>
-                <button onClick={handleHide}>숨기기</button>
-                <ul>
-                    {
-                        data.map((item, index) => {
-                            if (item.sdwn_ymd == null) {
-                                return <List key={index + 1} item={item}
-                                />
-                            }
-                        })
-                    }
-                </ul>
                         <button onClick={handleMore}>더보기</button>
 
             </div>
