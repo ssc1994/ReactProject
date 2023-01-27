@@ -51,9 +51,6 @@ const MapList = () => {
                 setPositions(newPositions)
             }
 
-            
-
-
 
         })();
     }, [])
@@ -64,7 +61,9 @@ const MapList = () => {
     if (loading === false) {
         return <div>로딩중</div>
     }
-    
+
+
+
     return (
         <Fragment>
             <h3>시설목록</h3>
