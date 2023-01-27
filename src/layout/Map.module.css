@@ -1,0 +1,102 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.findFacContainer {
+    position: relative;
+}
+
+.findFacContainer .findFacBox {
+    border-top: 3px solid rgb(211, 255, 89);
+
+}
+
+.findFacBox .findFac {
+    position: absolute;
+    top: 10px;
+    left: 830px;
+    font-size: 30px;
+    font-family: 'Happiness-Sans-Title';
+}
+
+.mapListContainer .mapListButtonBox {
+    position: relative;
+    height: 100px;
+}
+
+.seeMoreButton {
+    background-color: rgb(211, 255, 89);
+    color: black;
+    border: none;
+    transition-duration: 0.4s;
+    font-size: 25px;
+    position: absolute;
+    top: 400px;
+    left: 200px;
+    font-family: 'Happiness-Sans-Title';
+    height: 80px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.seeMoreButton:hover {
+    background-color: #4CAF50;
+    color: black;
+}
+
+
+.mapListContainer .mapListSelectBox {
+    position: relative;
+}
+
+.mapListSelectBox .select {
+    position: absolute;
+    left: 200px;
+    font-size: 15px;
+    width: 150px;
+    height: 30px;
+    border: 3px solid #4CAF50;
+    /* background-color: rgb(174, 223, 215); */
+    font-size: 20px;
+    font-family: 'Happiness-Sans-Title';
+    outline: none;
+    cursor: pointer;
+}
+
+.mapListSelectBox .select option {
+    text-align: center;
+    /* background-color: rgb(174, 223, 215); */
+    font-size: 20px;
+    font-family: 'Happiness-Sans-Title';
+}
+
+@font-face {
+    font-family: 'Happiness-Sans-Title';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* .kakaoMapContainer {
+    position: relative;
+}
+
+.markerButton {
+    background-color: rgb(211, 255, 89);
+    color: black;
+    border: none;
+    transition-duration: 0.4s;
+    font-size: 25px;
+    font-family: 'Happiness-Sans-Title';
+    height: 80px;
+    width: 150px;
+    position: absolute;
+    top: 550px;
+    left: 200px;
+}
+
+.markerButton:hover {
+    background-color: #4CAF50;
+    color: black;
+} */

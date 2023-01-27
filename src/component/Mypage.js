@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
 
 import styled from '../layout/MyPage.module.css';
-
+const currentLogin = JSON.parse(sessionStorage.getItem("login"));
+const email = currentLogin.email;
+const nickname = currentLogin.nickname;
+const password = currentLogin.password;
 
 function Article(props) {
     return <article className={styled.my_wrap}>
-        <h2>{props.title}</h2>
-        {props.body}
+        {props.email == currentLogin.email ? <div>
+            <h2>email : {props.email}</h2>
+            <p>Nickname : {props.nickname}</p>
+            <p>Password : {props.password}</p>
+        </div>
+            : <h3>{props.nickname}</h3>}
+
     </article>
 }
 function Header(props) {
@@ -14,7 +23,7 @@ function Header(props) {
         <h1><a href="/"  onClick={(event) => {
             event.preventDefault();
             props.onChangeMode();
-        }}>{props.title}</a></h1>
+        }}>{props.nickname}</a></h1>
     </header>
 }
 function Nav(props) {
@@ -25,7 +34,7 @@ function Nav(props) {
             <a id={t.id} href={'/read/' + t.id} className={styled.my_wrap3} onClick={event => {
                 event.preventDefault();
                 props.onChangeMode(Number(event.target.id));
-            }}>{t.title}</a>
+            }}>{t.nickname}님 ({t.email}) 정보 수정</a>
         </li>)
     }
     return <nav>
@@ -35,70 +44,80 @@ function Nav(props) {
     </nav>
 }
 
-
-
 function Update(props) {
 
-    
-    const [title, setTitle] = useState(props.title);
-    const [body, setBody] = useState(props.body);
+    const [nickname, setTitle] = useState(props.nickname);
+    const [password, setBody] = useState(props.password);
     return <article className={styled.my_wrap4}>
-        <h2>Update</h2>
+        <h2>email : {email !=undefined ?  "로그인하세요" : {email} }</h2>
+
         <form onSubmit={event => {
             event.preventDefault();
-            const title = event.target.title.value;
-            const body = event.target.body.value;
-            props.onUpdate(title, body);
+            const nickname = event.target.nickname.value;
+            const password = event.target.password.value;
+            props.onUpdate(nickname, password);
         }}>
+
             <div className={styled.my_wrap6}>
-            <p><input type="text" name="title" placeholder="title" value={title} onChange={event => {
+           
+            <p>Nickname : <input type="text" name="nickname" placeholder="nickname" value={nickname} onChange={event => {
                 setTitle(event.target.value);
             }} /></p>
-            <br/>
-            <p><textarea name="body" placeholder="body" value={body} onChange={event => {
+            <p>Password : <input type="text" name="password" placeholder="password" value={password} onChange={event => {
+
                 setBody(event.target.value);
-            }}></textarea></p>
+            }}></input></p>
             <p><input type="submit" value="Update"></input></p>
             </div>
         </form>
     </article>
 }
+
 function Mypage() {
+
     const [mode, setMode] = useState('WELCOME');
     const [id, setId] = useState(null);
     const [nextId, setNextId] = useState(4);
     const [topics, setTopics] = useState([
-        { id: 1, title: '나루토', body: '나뭇잎마을 호카게' },
+        { id: 1, nickname: `${nickname}`, password: `${password}`, email: `${email}` },
     ]);
+    console.log(topics);
     let content = null;
     let contextControl = null;
     if (mode === 'WELCOME') {
-        content = <Article title="Welcome" body="Hello!"></Article>
+        content = <Article nickname={nickname + "님 환영합니다"} password="*******"></Article>
     } else if (mode === 'READ') {
-        let title, body = null;
+        let nickname, password = null;
         for (let i = 0; i < topics.length; i++) {
             if (topics[i].id === id) {
-                title = topics[i].title;
-                body = topics[i].body;
+                nickname = topics[i].nickname;
+                password = topics[i].password;
             }
         }
-        content = <Article title={title} body={body}></Article>
+
+        content = <Article email={email} nickname={nickname} password={password}></Article>
         contextControl = <li className={styled.my_wrap5}><a href={'/update/' + id} onClick={event => {
+
             event.preventDefault();
             setMode('UPDATE');
         }}>Update</a></li>
     } else if (mode === 'UPDATE') {
-        let title, body = null;
+        let nickname, password = null;
         for (let i = 0; i < topics.length; i++) {
             if (topics[i].id === id) {
-                title = topics[i].title;
-                body = topics[i].body;
+                nickname = topics[i].nickname;
+                password = topics[i].password;
             }
         }
-        content = <Update title={title} body={body} onUpdate={(title, body) => {
-            console.log(title, body);
+        content = <Update email={email} nickname={nickname} password={password} onUpdate={(nickname, password) => {
+            console.log(nickname, password);            //수정된 값들
             const newTopics = [...topics]
-            const updatedTopic = { id: id, title: title, body: body }
+            const updatedTopic = { email: `${email}`, password: `${password}`, nickname: `${nickname}` }
+            const currMemberInfo = JSON.parse(localStorage.getItem('join'));
+
+            localStorage.setItem('join', JSON.stringify(updatedTopic));
+            sessionStorage.setItem('login', JSON.stringify(updatedTopic));
+
             for (let i = 0; i < newTopics.length; i++) {
                 if (newTopics[i].id === id) {
                     newTopics[i] = updatedTopic;
@@ -111,7 +130,7 @@ function Mypage() {
     }
     return (
         <div>
-            <Header title="회원정보 수정" onChangeMode={() => {
+            <Header nickname="회원정보 수정" onChangeMode={() => {
                 setMode('WELCOME');
             }}></Header>
             <Nav topics={topics} onChangeMode={(_id) => {
