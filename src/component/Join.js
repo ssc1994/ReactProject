@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Fragment, useCallback, useState } from "react"
+import { Fragment, useCallback, useEffect, useState } from "react"
 import { json, useNavigate } from "react-router-dom";
 import './../layout/Member.css'
 
@@ -34,6 +34,7 @@ const Join = () => {
             .toLowerCase()
             .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/);
     };
+
     const [password, setPassword] = useState('');
     const [pwdMsg, setPwdMsg] = useState('');
     const isPwdValid = validatePwd(password);
@@ -94,37 +95,101 @@ const Join = () => {
     const onSubmit = () => {
         // 회원가입시 받은 정보를 localstorage에 저장한다.
         const currMemberInfo = JSON.parse(localStorage.getItem('join'));
-        const memberInfo = {email : email, password : password, nickname : nickname};
-        if(currMemberInfo === null){
-            localStorage.setItem('join', JSON.stringify([memberInfo]));
-        }else{
+        const memberInfo = { email: email, password: password, nickname: nickname };
+
+        if (currMemberInfo === null) {
+            localStorage.setItem('join', JSON.stringify([{ email: email, password: password, nickname: nickname }]));
+        } else {
             currMemberInfo.push(memberInfo);
             localStorage.setItem('join', JSON.stringify(currMemberInfo));
         }
+
         alert('가입되었습니다');
         navigator("/login");
+
     }
+
+    const onModify = () => {
+        // 수정시
+        const currMemberInfo = JSON.parse(localStorage.getItem('join'));
+        const modifyInfo = {
+            email: email === '' ? session.email : email,
+            password: password === '' ? session.password : password,
+            nickname: nickname === '' ? session.nickname : nickname
+        };
+
+        console.log("------현재 가지고 있는 애들 ------");
+        console.log(currMemberInfo);
+        console.log("-----수정할 정보-------");
+        console.log(modifyInfo);
+
+        for (var i = 0; i < currMemberInfo.length; i++) {
+            if (currMemberInfo[i].email === modifyInfo.email) {
+                currMemberInfo.pop(i);
+            } else {
+                currMemberInfo.push(modifyInfo);
+            }
+        }
+        localStorage.setItem('join', JSON.stringify(currMemberInfo));
+        navigator('/mypage');
+    }
+
+    const [session, setSession] = useState();
+    const [state, setState] = useState('join');
+    const checkSession = JSON.parse(sessionStorage.getItem('login'));
+    useEffect(() => {
+        if (checkSession !== null) {
+            setSession(checkSession);
+            setState('modify');
+        }
+    }, []);
+
+    console.log(session);
 
     return (
         <Fragment>
-            <form action="#" calssName="join">
-                <h1>Sign Up</h1>
-                <p>use your email for registration</p>
+            {state === 'modify' ?
+                // 수정 - 마이페이지
+                <form action="#" calssName="join">
+                    <h1>Modify</h1>
+                    <p>use your email for registration</p>
 
-                <input type="text" onChange={onChangeEmail} placeholder="Email"></input>
-                <span className={isEmailValid ? 'success' : 'error'}>{emailMsg}</span>
+                    <input type="text" onChange={onChangeEmail} placeholder={session.email} readOnly></input>
+                    <span className={isEmailValid ? 'success' : 'error'}>{emailMsg}</span>
 
-                <input type="password" onChange={onChangePwd} placeholder="password"></input>
-                <span className={isPwdValid ? 'success' : 'error'}>{pwdMsg}</span>
+                    <input type="password" onChange={onChangePwd} placeholder={session.password}></input>
+                    <span className={isPwdValid ? 'success' : 'error'}>{pwdMsg}</span>
 
-                <input type="password" onChange={onChangeConfirmPwd} placeholder="verify password"></input>
-                <span className={isConfirmPwd ? 'success' : 'error'}>{confirmPwdMsg}</span>
+                    <input type="password" onChange={onChangeConfirmPwd} placeholder="verify password"></input>
+                    <span className={isConfirmPwd ? 'success' : 'error'}>{confirmPwdMsg}</span>
 
-                <input type="text" onChange={onChangeNickname} placeholder="NickName"></input>
-                <span className={isNicknameValid ? 'success' : 'error'}>{nicknameMsg}</span>
+                    <input type="text" onChange={onChangeNickname} placeholder={session.nickname}></input>
+                    <span className={isNicknameValid ? 'success' : 'error'}>{nicknameMsg}</span>
 
-                <button onClick={onSubmit} type="submit" disabled={!isAllValid} style={{ marginTop: "10px" }}>Sign Up</button>
-            </form>
+                    <button onClick={onModify} type="button" style={{ marginTop: "10px" }}>Modify</button>
+                </form>
+                :
+                // 조인 - 회원가입
+                <form action="#" calssName="join">
+                    <h1>Sign Up</h1>
+                    <p>use your email for registration</p>
+
+                    <input type="text" onChange={onChangeEmail} placeholder="Email"></input>
+                    <span className={isEmailValid ? 'success' : 'error'}>{emailMsg}</span>
+
+                    <input type="password" onChange={onChangePwd} placeholder="password"></input>
+                    <span className={isPwdValid ? 'success' : 'error'}>{pwdMsg}</span>
+
+                    <input type="password" onChange={onChangeConfirmPwd} placeholder="verify password"></input>
+                    <span className={isConfirmPwd ? 'success' : 'error'}>{confirmPwdMsg}</span>
+
+                    <input type="text" onChange={onChangeNickname} placeholder="NickName"></input>
+                    <span className={isNicknameValid ? 'success' : 'error'}>{nicknameMsg}</span>
+
+                    <button onClick={onSubmit} type="submit" disabled={!isAllValid} style={{ marginTop: "10px" }}>Sign Up</button>
+                </form>
+            }
+
         </Fragment>
     )
 }

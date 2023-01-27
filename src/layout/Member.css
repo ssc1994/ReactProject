@@ -12,6 +12,7 @@
 	flex-direction: column;
 	font-family: 'Montserrat', sans-serif;
 	height: 88vh;
+	border-top: 3px solid #d3ff59;
 }
 
 .Form h1 {
@@ -231,7 +232,7 @@
 }
 
 .social-container {
-	margin: 20px 0;
+	margin: 10px 0;
 }
 
 .social-container a {
