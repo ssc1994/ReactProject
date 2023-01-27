@@ -4,9 +4,9 @@
     align-items: center;
 }
 
-.TodoListItem :nth-child(even) {
+/* .TodoListItem :nth-child(even) {
     background: #f8f9fa;
-}
+} */
 
 .TodoListItem .checkbox {
     cursor: pointer;
@@ -40,4 +40,5 @@
 .TodoListItem .remove :hover {
     color: #ff8787;
 }
+
 
