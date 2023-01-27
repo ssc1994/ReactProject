@@ -1,3 +1,35 @@
 .highlight {
     background: #f3a95f;
 }
+
+.my_wrap {
+    border: 1px solid black;
+    padding: 200px;
+    padding-left: 850px;
+}
+
+.my_wrap2 {
+    padding-left: 850px;
+    border-top: 3px solid rgb(211, 255, 89);
+}
+
+.my_wrap3 {
+    margin-bottom: 300px;
+    padding-left: 850px;
+}
+
+.my_wrap4 {
+    padding-left: 850px;
+}
+
+.my_wrap5 {
+    padding-left: 850px;
+}
+
+.my_wrap6 {
+    border: solid 1px black;
+    float: left;
+    margin-top: 145px;
+    
+
+}
