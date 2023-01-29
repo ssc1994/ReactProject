@@ -1,6 +1,5 @@
 import axios from "axios";
-import { Fragment, useEffect, useState, useContext } from "react";
-import List from "./mapComponent/List";
+import {  useEffect, useState, useContext } from "react";
 import ListContext from "./../contexts/MapContextAPI.js";
 
 //css
@@ -8,47 +7,38 @@ import styled from '../layout/Map.module.css';
 
 const MapList = () => {
 
-    const [data, setData] = useState();
     const [dataPlus, setDataPlus] = useState([]);
     const { state, action } = useContext(ListContext);
     const [pageNum, setPageNum] = useState(1);
-    const [addr, setAddr] = useState("서울");
+    const [addr, setAddr] = useState("강남구");
 
     const handleAddr = (e) => {
         setAddr(e.target.value);
-        console.log(e.target.value);
     }
-    
 
     const url = "https://apis.data.go.kr/B551014/SRVC_OD_API_SFMS_FACI/TODZ_API_SFMS_FACI_I"
 
-    useEffect(() => {      //로딩시 시설리스트 출력 ( 기본값 페이지 : 1 / 갯수 : 5 / 지역 : 송파)
+    useEffect(() => {
         (async () => {
-
             let urlquery = "?serviceKey=IxONcjfs6wc1hi5EUDKqUQfuvJ9%2B8kJ2QYxK1XXYm%2B%2FJsE5yIfdbfA12fHmbNu6YMYfoi1cd%2FTIppcx%2FllL9sQ%3D%3D";
             urlquery += `&pageNo=${pageNum}`;
             urlquery += "&numOfRows=10";
             urlquery += "&resultType=JSON";
             urlquery += `&faci_addr=${addr}`;
 
-            console.log(addr);
             let resultArr = await axios.get(url + urlquery)
                 .then(res => {
-                    setData(res.data.response.body.items.item);
+                    setDataPlus(dataPlus.concat(res.data.response.body.items.item));
                     return res.data.response.body.items.item;
                 })
-            setLoading(true)
+            setLoading(true);
         })();
     }, [pageNum])
 
-    const handleMore = (e) => {     //클릭시 pageNum+1 (useEffect가 다시돌아감)
-        setDataPlus(dataPlus.concat(data));
+    const handleMore = () => {     //클릭시 pageNum+1 (useEffect가 다시돌아감)
         action.setList(dataPlus);
         setPageNum(pageNum + 1);
     }
-
-
-
 
     ///로딩페이지
     const [loading, setLoading] = useState(false);
@@ -65,6 +55,8 @@ const MapList = () => {
             <div className={styled.mapListSelectBox}>
                 <select className={styled.select} onChange={handleAddr}>
                     {/* 서울 */}
+                    <option value={"강남구"}>강남구</option>
+                    <option value={"송파구"}>송파구</option>
                     <option value={"종로구"}>종로구</option>
                     <option value={"중구"}>중구</option>
                     <option value={"용산구"}>용산구</option>
@@ -87,15 +79,12 @@ const MapList = () => {
                     <option value={"동작구"}>동작구</option>
                     <option value={"관악구"}>관악구</option>
                     <option value={"서초구"}>서초구</option>
-                    <option value={"강남구"}>강남구</option>
-                    <option value={"송파구"}>송파구</option>
                     <option value={"강동구"}>강동구</option>
                 </select>
 
             </div>
         </div>
 
-        //셀렉트태그
     )
 }
 

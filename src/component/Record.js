@@ -16,11 +16,6 @@ import styled from '../layout/Record.module.css';
 const Record = () => {
     const [value, onChange] = useState(new Date()); //캘린더
     const [todos, setTodos] = useState([
-        // {
-        //     id: 1,
-        //     text: '리액트 기초',
-        //     checked: true,
-        // },
         {
             id: 1,
             text: '중량 80쳤다',
@@ -94,7 +89,7 @@ const Record = () => {
                         locale="en-EN"
                         //date와 우리가 작성한 배열인 marks를 비교하며 해당되는 날짜에 highlight를 클래스명으로 주게 된다.
                         tileClassName={({ date, view }) => {
-                            if (marks.find((x) => x === moment(date).format("DD-MM-YYYY"))) {
+                            if (marks.find((x) => x == moment(date).format("DD-MM-YYYY"))) {
                                 return "highlight";
                             }
                         }}

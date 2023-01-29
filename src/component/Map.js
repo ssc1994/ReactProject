@@ -13,7 +13,7 @@ const Map = () => {
 
         <div className={styled.findFacContainer}>
             <div className={styled.findFacBox}>
-                <h3 className={styled.findFac}>공공시설 찾기</h3>
+                <h3 className={styled.findFac}>주변 운동시설 찾기</h3>
                 <ListProvider>  {/* 공공데이터에서 받아온 위도 경도를 넣는 contextAPI */}
                     <MapList />
                     <KakaoMap />
