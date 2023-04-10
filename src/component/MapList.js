@@ -20,7 +20,7 @@ const MapList = () => {
 
     useEffect(() => {
         (async () => {
-            let urlquery = "?serviceKey=IxONcjfs6wc1hi5EUDKqUQfuvJ9%2B8kJ2QYxK1XXYm%2B%2FJsE5yIfdbfA12fHmbNu6YMYfoi1cd%2FTIppcx%2FllL9sQ%3D%3D";
+            let urlquery = "?serviceKey=/*서비스키*/";
             urlquery += `&pageNo=${pageNum}`;
             urlquery += "&numOfRows=10";
             urlquery += "&resultType=JSON";
